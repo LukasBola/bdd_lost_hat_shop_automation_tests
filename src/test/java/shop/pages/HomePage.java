@@ -2,6 +2,7 @@ package shop.pages;
 
 import io.qameta.allure.Step;
 import shop.components.Header;
+import shop.navigation.ApplicationURLs;
 import shop.utils.Log;
 
 import static com.codeborne.selenide.Selenide.open;
@@ -11,7 +12,7 @@ public class HomePage extends Header {
 
     @Step("Open homepage")
     public void openHomepage() {
-        open("https://autodemo.testoneo.com/en/");
+        open(ApplicationURLs.BASE_URL);
         Log.info("Current URL: " + url());
     }
 }
