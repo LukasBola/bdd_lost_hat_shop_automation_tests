@@ -9,25 +9,33 @@ import cucumber.api.java.After;
 import cucumber.api.java.Before;
 import io.qameta.allure.selenide.AllureSelenide;
 import org.apache.log4j.xml.DOMConfigurator;
+import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import shop.utils.Log;
 
-import java.io.IOException;
-
-import static com.codeborne.selenide.AssertionMode.SOFT;
 import static com.codeborne.selenide.Selenide.closeWebDriver;
 
 public class Hook {
-    public String browser = "chrome";
-    public String browserSize = "1920x1250";
-    public Boolean headless = false;
-    public Boolean startMaximized = false;
-    public Boolean holdBrowserOpen = false;
-    public int timeout = 15000;
+    public static String browser = "chrome";
+    public static String browserSize = "1920x1250";
+    public static Boolean headless = false;
+    public static Boolean startMaximized = false;
+    public static Boolean holdBrowserOpen = false;
+    public static int timeout = 15000;
 
-    @Before
-    public void initialize() throws IOException {
-        System.out.println("--- Initializing browser: " + browser.toUpperCase());
+    @Before("@reopen_browser_for_each_test")
+    public void test() {
+        initialize();
+    }
+
+    @After("@reopen_browser_for_each_test")
+    public void test2() {
+        tearDown();
+    }
+
+    @BeforeClass
+    public static void initialize() {
+        System.out.println("--- Initializing browser: " + browser.toUpperCase() + " ---");
         DOMConfigurator.configure("log4j.xml");
         SelenideLogger.addListener("AllureSelenide", new AllureSelenide().screenshots(true).savePageSource(true));
         SelenideLogger.addListener("name", new LogEventListener() {
@@ -40,7 +48,6 @@ public class Hook {
             public void beforeEvent(LogEvent logEvent) {
             }
         });
-
         Configuration.browser = browser;
         Configuration.headless = headless;
         Configuration.timeout = timeout;
@@ -52,10 +59,9 @@ public class Hook {
         System.setProperty("file.encoding", "UTF-8");
     }
 
-    @After
-    public void tearDown() {
+    @AfterClass
+    public static void tearDown() {
         closeWebDriver();
-        System.out.println("--- Browser closed");
+        System.out.println("--- Browser closed ---");
     }
-
 }

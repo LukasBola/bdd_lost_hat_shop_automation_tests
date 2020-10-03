@@ -1,3 +1,4 @@
+@reopen_browser_for_each_test
 @smoke
 @account
 @account_login
