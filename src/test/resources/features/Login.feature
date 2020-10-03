@@ -28,6 +28,6 @@ Feature: Login features
     And     I type email: test_777@test.com on the LoginPage
     And     I type password: pass777 on the LoginPage
     And     I click login button on the LoginPage
-    Then    I am logged in as: Lukas Bolażss
+    Then    I am logged in as: Lukas Bolaż
     And     I click logout button on the HomePage
     Then    I am logged out
