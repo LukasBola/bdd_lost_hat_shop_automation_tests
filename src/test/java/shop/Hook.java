@@ -24,17 +24,17 @@ public class Hook {
     public static int timeout = 15000;
 
     @Before("@reopen_browser_for_each_test")
-    public void test() {
-        initialize();
+    public void reopenBrowserSetUp() {
+        setUp();
     }
 
     @After("@reopen_browser_for_each_test")
-    public void test2() {
+    public void reopenBrowserTearDown() {
         tearDown();
     }
 
     @BeforeClass
-    public static void initialize() {
+    public static void setUp() {
         System.out.println("--- Initializing browser: " + browser.toUpperCase() + " ---");
         DOMConfigurator.configure("log4j.xml");
         SelenideLogger.addListener("AllureSelenide", new AllureSelenide().screenshots(true).savePageSource(true));
