@@ -7,12 +7,12 @@ import cucumber.api.java.en.When;
 import org.junit.Assert;
 import shop.navigation.ApplicationURLs;
 import shop.pages.HomePage;
+import shop.pages.IdentityPage;
 import shop.pages.LoginPage;
 import shop.pages.MyAccountPage;
 import shop.utils.Log;
 
-import static com.codeborne.selenide.Selenide.open;
-import static com.codeborne.selenide.Selenide.title;
+import static com.codeborne.selenide.Selenide.*;
 
 public class CommonSteps {
 
@@ -20,6 +20,7 @@ public class CommonSteps {
     public HomePage homepage;
     public LoginPage loginPage;
     public MyAccountPage myAccountPage;
+    public IdentityPage identityPage;
 
 
     @And("^I am on the HomePage$")
@@ -108,6 +109,26 @@ public class CommonSteps {
 
     @And("^I click information button on the MyAccountPage$")
     public void iClickInformationButtonOnTheMyAccountPage() {
-        myAccountPage.clickInformationButton();
+        identityPage = myAccountPage.clickInformationButton();
+    }
+
+    @And("^I type new name: (.+) on the IdentityPge$")
+    public void iTypeNewNameNewNameOnTheIdentityPge(String newName) {
+        identityPage.typeName(newName);
+    }
+
+    @And("^I type new last name: (.+) on the IdentityPge$")
+    public void iTypeNewLastNameOnTheIdentityPge(String newLastName) {
+        identityPage.typeLastName(newLastName);
+    }
+
+    @And("^I type password: (.+) on the IdentityPge$")
+    public void iTypePasswordOnTheIdentityPge(String password) {
+        loginPage.typePassword(password);
+    }
+
+    @And("^I click save button on the IdentityPge$")
+    public void iClickSaveButtonOnTheIdentityPge() {
+        identityPage.clickSaveButton();
     }
 }
