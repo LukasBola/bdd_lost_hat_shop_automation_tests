@@ -8,6 +8,7 @@ import org.junit.Assert;
 import shop.navigation.ApplicationURLs;
 import shop.pages.HomePage;
 import shop.pages.LoginPage;
+import shop.pages.MyAccountPage;
 import shop.utils.Log;
 
 import static com.codeborne.selenide.Selenide.open;
@@ -18,6 +19,7 @@ public class CommonSteps {
     // Pages
     public HomePage homepage;
     public LoginPage loginPage;
+    public MyAccountPage myAccountPage;
 
 
     @And("^I am on the HomePage$")
@@ -97,5 +99,15 @@ public class CommonSteps {
                 Assert.assertEquals(expectedTitle, title());
                 break;
         }
+    }
+
+    @And("^I click view my customer account button on the HomePage$")
+    public void iClickViewMyCustomerAccountButtonOnTheHomePage() {
+        myAccountPage = homepage.clickLoggedUserNameButton();
+    }
+
+    @And("^I click information button on the MyAccountPage$")
+    public void iClickInformationButtonOnTheMyAccountPage() {
+        myAccountPage.clickInformationButton();
     }
 }
