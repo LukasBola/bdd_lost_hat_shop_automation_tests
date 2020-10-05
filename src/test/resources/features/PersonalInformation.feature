@@ -17,3 +17,5 @@ Feature: Personal information features
     And     I type password: pass777 on the IdentityPge
     And     I click save button on the IdentityPge
     Then    I am logged in as: Lukas Bolasz
+    And     I click logout button on the HomePage
+    Then    I am logged out
