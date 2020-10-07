@@ -11,7 +11,7 @@ Feature: Login features
     And     I type email: test_777@test.com on the LoginPage
     And     I type password: pass777 on the LoginPage
     And     I click login button on the LoginPage
-    Then    I am logged in as: Lukas Bolaż
+    Then    I am logged in as: Lukas Bolasz
 
   @account_login_invalid_credentials
   Scenario: Login with invalid credentials
@@ -29,6 +29,6 @@ Feature: Login features
     And     I type email: test_777@test.com on the LoginPage
     And     I type password: pass777 on the LoginPage
     And     I click login button on the LoginPage
-    Then    I am logged in as: Lukas Bolaż
+    Then    I am logged in as: Lukas Bolasz
     And     I click logout button on the HomePage
     Then    I am logged out
