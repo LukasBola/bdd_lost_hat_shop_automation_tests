@@ -5,6 +5,7 @@ import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.junit.Assert;
+import shop.data.UserReader;
 import shop.navigation.ApplicationURLs;
 import shop.pages.HomePage;
 import shop.pages.IdentityPage;
@@ -35,7 +36,7 @@ public class CommonSteps {
     }
 
     @And("^I type email: (.+) on the LoginPage$")
-    public void iTypeEmailTest_TestComOnTheLoginPage(String email) {
+    public void iTypeEmailOnTheLoginPage(String email) {
         loginPage.typeEmail(email);
     }
 
@@ -112,13 +113,13 @@ public class CommonSteps {
         identityPage = myAccountPage.clickInformationButton();
     }
 
-    @And("^I type new name: (.+) on the IdentityPge$")
-    public void iTypeNewNameNewNameOnTheIdentityPge(String newName) {
+    @And("^I type name: (.+) on the IdentityPge$")
+    public void iTypeNameOnTheIdentityPge(String newName) {
         identityPage.typeName(newName);
     }
 
-    @And("^I type new last name: (.+) on the IdentityPge$")
-    public void iTypeNewLastNameOnTheIdentityPge(String newLastName) {
+    @And("^I type last name: (.+) on the IdentityPge$")
+    public void iTypeLastNameOnTheIdentityPge(String newLastName) {
         identityPage.typeLastName(newLastName);
     }
 
@@ -130,5 +131,25 @@ public class CommonSteps {
     @And("^I click save button on the IdentityPge$")
     public void iClickSaveButtonOnTheIdentityPge() {
         identityPage.clickSaveButton();
+    }
+
+    @And("^I type email for: (.+) on the LoginPage$")
+    public void iTypeEmailForUSEROnTheLoginPage(String user) {
+        iTypeEmailOnTheLoginPage(UserReader.getUserEmail(user));
+    }
+
+    @And("^I type password for: (.+) on the LoginPage$")
+    public void iTypePasswordForUSEROnTheLoginPage(String user) {
+        iTypePasswordPassOnTheLoginPage(UserReader.getUserPassword(user));
+    }
+
+    @And("^I type password for: (.+) on the IdentityPge$")
+    public void iTypePasswordForUSEROnTheIdentityPge(String user) {
+        iTypePasswordOnTheIdentityPge(UserReader.getUserPassword(user));
+    }
+
+    @Then("^I am logged in as user: (.+)$")
+    public void iAmLoggedInAsUser(String user) {
+        iAmLoggedInAsAutomatedTest(UserReader.getNameAndLastname(user));
     }
 }
