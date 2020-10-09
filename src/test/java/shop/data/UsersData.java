@@ -2,21 +2,19 @@ package shop.data;
 
 
 public enum UsersData {
-    CUSTOMER("test_777@test.com", "pass777", "Lukas Bolasz"),
-    APPLICANT("test_888@test.com", "pass888", "Lukas Bolasz");
+    CUSTOMER("test_777@test.com", "pass777", "Lukas", "Bolasz"),
+    APPLICANT("test_888@test.com", "pass888", "Lukas", "Bolasz");
 
     private final String email;
     private final String password;
-    private final String nameAndLastname;
+    private final String name;
+    private final String lastname;
 
-    UsersData(String email, String password, String nameAndLastname) {
+    UsersData(String email, String password, String name, String lastname) {
         this.email = email;
         this.password = password;
-        this.nameAndLastname = nameAndLastname;
-    }
-
-    public String getNameAndLastname() {
-        return nameAndLastname;
+        this.name = name;
+        this.lastname = lastname;
     }
 
     public String getEmail() {
@@ -25,5 +23,13 @@ public enum UsersData {
 
     public String getPassword() {
         return password;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getLastname() {
+        return lastname;
     }
 }

@@ -150,6 +150,6 @@ public class CommonSteps {
 
     @Then("^I am logged in as user: (.+)$")
     public void iAmLoggedInAsUser(String user) {
-        iAmLoggedInAsAutomatedTest(UserReader.getNameAndLastname(user));
+        iAmLoggedInAsAutomatedTest(UserReader.getUserName(user));
     }
 }
