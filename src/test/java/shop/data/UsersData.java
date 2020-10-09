@@ -3,7 +3,8 @@ package shop.data;
 
 public enum UsersData {
     CUSTOMER("test_777@test.com", "pass777", "Lukas", "Bolasz"),
-    APPLICANT("test_888@test.com", "pass888", "Lukas", "Bolasz");
+    APPLICANT("test_888@test.com", "pass888", "Jan", "Kowalski"),
+    EMPLOYEE("test_999@test.com", "pass999", "Bilbo", "Baggins");
 
     private final String email;
     private final String password;

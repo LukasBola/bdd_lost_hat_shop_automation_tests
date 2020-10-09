@@ -12,6 +12,8 @@ Feature: Login features
     And     I type password for: CUSTOMER on the LoginPage
     And     I click login button on the LoginPage
     Then    I am logged in as user: CUSTOMER
+    And     I click logout button on the HomePage
+    Then    I am logged out
 
   @account_login_invalid_credentials
   Scenario: Login with invalid credentials
@@ -26,9 +28,9 @@ Feature: Login features
   Scenario: Login with valid credentials and then log out
     Given   I am on the HomePage
     When    I click sign in button on the HomePage
-    And     I type email for: CUSTOMER on the LoginPage
-    And     I type password for: CUSTOMER on the LoginPage
+    And     I type email for: APPLICANT on the LoginPage
+    And     I type password for: APPLICANT on the LoginPage
     And     I click login button on the LoginPage
-    Then    I am logged in as user: CUSTOMER
+    Then    I am logged in as user: APPLICANT
     And     I click logout button on the HomePage
     Then    I am logged out
