@@ -10,7 +10,7 @@
 
     <properties>
         <project.java.version>1.8</project.java.version>
-        <selenide.version>5.6.0</selenide.version>
+        <selenide.version>5.15.0</selenide.version>
         <aspectj.version>1.9.4</aspectj.version>
         <javafaker.version>0.18</javafaker.version>
         <allure.version>2.12.1</allure.version>

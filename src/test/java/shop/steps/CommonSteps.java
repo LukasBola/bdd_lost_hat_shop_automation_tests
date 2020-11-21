@@ -52,9 +52,7 @@ public class CommonSteps {
 
     @Then("^I am logged in as: (.+)$")
     public void iAmLoggedInAsAutomatedTest(String username) {
-        Assert.assertEquals(username, homepage.loggedUsername.shouldBe(Condition.visible).
-                shouldBe(Condition.enabled).
-                getText());
+        homepage.loggedUsername.shouldBe(Condition.visible).shouldBe(Condition.enabled).shouldHave(Condition.exactOwnText(username));
     }
 
     @Then("^I am not logged in$")
