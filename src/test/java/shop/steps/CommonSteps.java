@@ -52,7 +52,7 @@ public class CommonSteps {
 
     @Then("^I am logged in as: (.+)$")
     public void iAmLoggedInAsAutomatedTest(String username) {
-        homepage.loggedUsername.shouldBe(Condition.visible).shouldBe(Condition.enabled).shouldHave(Condition.exactOwnText(username));
+        homepage.loggedUsername.shouldBe(Condition.visible, Condition.enabled).shouldHave(Condition.exactOwnText(username));
     }
 
     @Then("^I am not logged in$")
@@ -71,7 +71,7 @@ public class CommonSteps {
     @And("^I am logged out$")
     public void iAmLoggedOut() {
         loginPage.signInButton.shouldBe(Condition.visible).shouldBe(Condition.enabled);
-        homepage.pageHeaderLabel.shouldBe(Condition.visible).shouldHave(Condition.text("Log in to your account"));
+        homepage.pageHeaderLabel.shouldBe(Condition.visible, Condition.text("Log in to your account"));
     }
 
     @Then("^I check if (.+) has expected (.+) title$")
