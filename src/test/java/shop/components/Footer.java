@@ -1,4 +1,4 @@
 package shop.components;
 
-public class Footer {
+interface Footer {
 }

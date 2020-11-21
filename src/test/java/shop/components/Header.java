@@ -10,8 +10,8 @@ import shop.utils.Log;
 
 import static com.codeborne.selenide.Selenide.$;
 
-public class Header {
-    public SelenideElement
+public interface Header {
+    SelenideElement
             headerSignInButton = $(By.xpath("//span[contains(text() , 'Sign in') ]")),
             headerSignOutButton = $("a.logout"),
             cartButton = $(By.xpath("//span[contains(text() , 'Cart') ]")),
@@ -21,7 +21,7 @@ public class Header {
 
 
     @Step("Click login button")
-    public LoginPage clickSignInButton() {
+    default LoginPage clickSignInButton() {
         Log.info("Click login button...");
         headerSignInButton.click();
         Log.info("Click login button. Done");
@@ -29,14 +29,14 @@ public class Header {
     }
 
     @Step("Click logout button")
-    public void clickSignOutButton() {
+    default void clickSignOutButton() {
         Log.info("Click sign out button...");
         headerSignOutButton.shouldBe(Condition.visible).click();
         Log.info("Click logout button. Done");
     }
 
     @Step("Click logged user name button")
-    public MyAccountPage clickLoggedUserNameButton() {
+    default MyAccountPage clickLoggedUserNameButton() {
         Log.info("Click logged user name button...");
         loggedUsername.shouldBe(Condition.visible).click();
         Log.info("Click logged user name button. Done");

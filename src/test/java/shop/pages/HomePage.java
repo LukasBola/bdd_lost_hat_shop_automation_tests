@@ -8,7 +8,7 @@ import shop.utils.Log;
 import static com.codeborne.selenide.Selenide.open;
 import static com.codeborne.selenide.WebDriverRunner.url;
 
-public class HomePage extends Header {
+public class HomePage implements Header {
 
     @Step("Open homepage")
     public void openHomepage() {
