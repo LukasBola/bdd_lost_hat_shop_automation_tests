@@ -5,8 +5,10 @@ import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.logevents.LogEvent;
 import com.codeborne.selenide.logevents.LogEventListener;
 import com.codeborne.selenide.logevents.SelenideLogger;
-import cucumber.api.java.After;
-import cucumber.api.java.Before;
+import io.cucumber.java.After;
+import io.cucumber.java.AfterStep;
+import io.cucumber.java.Before;
+import io.cucumber.java.BeforeStep;
 import io.qameta.allure.selenide.AllureSelenide;
 import org.apache.log4j.xml.DOMConfigurator;
 import org.junit.AfterClass;
@@ -17,7 +19,7 @@ import static com.codeborne.selenide.Selenide.closeWebDriver;
 
 public class Hook {
     public static String browser = "chrome";
-    public static String browserSize = "1920x1250";
+    public static String browserSize = "1920x1080";
     public static Boolean headless = false;
     public static Boolean startMaximized = false;
     public static Boolean holdBrowserOpen = false;
@@ -38,16 +40,16 @@ public class Hook {
         System.out.println("--- Initializing browser: " + browser.toUpperCase() + " ---");
         DOMConfigurator.configure("log4j.xml");
         SelenideLogger.addListener("AllureSelenide", new AllureSelenide().screenshots(true).savePageSource(true));
-        SelenideLogger.addListener("name", new LogEventListener() {
-            @Override
-            public void afterEvent(LogEvent logEvent) {
-                Log.info(logEvent);
-            }
-
-            @Override
-            public void beforeEvent(LogEvent logEvent) {
-            }
-        });
+//        SelenideLogger.addListener("name", new LogEventListener() {
+//            @Override
+//            public void afterEvent(LogEvent logEvent) {
+//                Log.info(logEvent);
+//            }
+//
+//            @Override
+//            public void beforeEvent(LogEvent logEvent) {
+//            }
+//        });
         Configuration.browser = browser;
         Configuration.headless = headless;
         Configuration.timeout = timeout;
