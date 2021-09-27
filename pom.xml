@@ -17,9 +17,8 @@
 <!--        <allure.maven.version>2.9</allure.maven.version>-->
 <!--        <maven.surefire>2.22.2</maven.surefire>-->
 <!--        <maven.compiler>3.8.1</maven.compiler>-->
-<!--        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>-->
         <project.java.version>1.8</project.java.version>
-        <selenide.version>5.16.0</selenide.version>
+        <selenide.version>5.21.0</selenide.version>
         <cucumber.version>5.6.0</cucumber.version>
         <junit.version>4.13</junit.version>
         <aspectj.version>1.9.4</aspectj.version>
@@ -28,6 +27,7 @@
         <allure.maven.version>2.9</allure.maven.version>
         <maven.surefire>2.22.2</maven.surefire>
         <maven.compiler>3.8.1</maven.compiler>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <run>RunnerTest</run>
     </properties>
 
