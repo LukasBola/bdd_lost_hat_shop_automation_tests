@@ -12,10 +12,9 @@ public class MyAccountPage {
     public SelenideElement informationButton = $("#identity-link");
 
     @Step("Click information button")
-    public IdentityPage clickInformationButton(){
+    public void clickInformationButton(){
         Log.info("Click information button...");
         informationButton.shouldBe(Condition.enabled).shouldBe(Condition.visible).click();
         Log.info("Click information. Done");
-        return new IdentityPage();
     }
 }

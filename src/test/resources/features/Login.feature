@@ -11,7 +11,7 @@ Feature: Login features
     And     I type email for: CUSTOMER on the LoginPage
     And     I type password for: CUSTOMER on the LoginPage
     And     I click login button on the LoginPage
-    Then    I am logged in as user: CUSTOMER
+    Then    I assert I am logged in as user: CUSTOMER
     And     I click logout button on the HomePage
     Then    I am logged out
 
@@ -31,6 +31,6 @@ Feature: Login features
     And     I type email for: APPLICANT on the LoginPage
     And     I type password for: APPLICANT on the LoginPage
     And     I click login button on the LoginPage
-    Then    I am logged in as user: APPLICANT
+    Then    I assert I am logged in as user: APPLICANT
     And     I click logout button on the HomePage
     Then    I am logged out

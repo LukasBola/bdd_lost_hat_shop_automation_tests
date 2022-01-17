@@ -16,13 +16,13 @@ Feature: Personal information features
     And     I type last name: ChangedLastname  on the IdentityPge
     And     I type password: pass777 on the IdentityPge
     And     I click save button on the IdentityPge
-    Then    I am logged in as: ChangedName ChangedLastname
+    Then    I assert I am logged in as: ChangedName ChangedLastname
     And     I click view my customer account button on the HomePage
     And     I click information button on the MyAccountPage
     And     I type name: Lukas  on the IdentityPge
     And     I type last name: Bolasz on the IdentityPge
     And     I type password for: CUSTOMER on the IdentityPge
     And     I click save button on the IdentityPge
-    Then    I am logged in as user: CUSTOMER
+    Then    I assert I am logged in as user: CUSTOMER
     And     I click logout button on the HomePage
     Then    I am logged out

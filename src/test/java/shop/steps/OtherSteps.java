@@ -2,68 +2,43 @@ package shop.steps;
 
 import com.codeborne.selenide.Condition;
 import io.cucumber.datatable.DataTable;
-import io.cucumber.java.en.Then;
-import io.cucumber.java.en.When;
 import io.cucumber.java.en.And;
+import io.cucumber.java.en.Then;
 import org.junit.Assert;
 import shop.data.UserReader;
 import shop.navigation.ApplicationURLs;
 import shop.pages.HomePage;
-import shop.pages.IdentityPage;
 import shop.pages.LoginPage;
 import shop.pages.MyAccountPage;
 import shop.utils.Log;
 
-import java.time.Duration;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import static com.codeborne.selenide.Condition.visible;
-import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.Selenide.open;
+import static com.codeborne.selenide.Selenide.title;
+import static java.time.Duration.ofSeconds;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
-import static java.time.Duration.ofSeconds;
 
-public class CommonSteps {
+public class OtherSteps {
 
     // Pages
     public HomePage homepage;
     public LoginPage loginPage;
     public MyAccountPage myAccountPage;
-    public IdentityPage identityPage;
 
-
-    @And("^I am on the HomePage$")
-    public void iAmOnTheHomepage() {
-        homepage = new HomePage();
-        homepage.openHomepage();
+    public OtherSteps(HomePage homepage, LoginPage loginPage, MyAccountPage myAccountPage) {
+        this.homepage = homepage;
+        this.loginPage = loginPage;
+        this.myAccountPage = myAccountPage;
     }
 
-    @When("^I click sign in button on the HomePage$")
-    public void iClickLoginButtonOnTheHomePage() {
-        loginPage = homepage.clickSignInButton();
-    }
-
-    @And("^I type email: (.+) on the LoginPage$")
-    public void iTypeEmailOnTheLoginPage(String email) {
-        loginPage.typeEmail(email);
-    }
-
-    @And("^I type password: (.+) on the LoginPage$")
-    public void iTypePasswordPassOnTheLoginPage(String password) {
-        loginPage.typePassword(password);
-    }
-
-    @And("^I click login button on the LoginPage$")
-    public void iClickLoginButtonOnTheLoginPage() {
-        loginPage.clickSignIn();
-    }
-
-    @Then("^I am logged in as: (.+)$")
-    public void iAmLoggedInAsAutomatedTest(String username) {
+    @Then("^I assert I am logged in as: (.+)$")
+    public void iAssertIAmLoggedInAsAutomatedTest(String username) {
         homepage.loggedUsername.shouldBe(visible, ofSeconds(25)).shouldHave(Condition.exactOwnText(username));
-
     }
 
     @Then("^I am not logged in$")
@@ -72,11 +47,6 @@ public class CommonSteps {
         loginPage.invalidLoginOrPasswordLabel.shouldBe(visible);
         Log.info("Error dialog about wrong email or password should be visible. Done");
         Log.info("Error dialog is: '" + loginPage.invalidLoginOrPasswordLabel.getText() + "'");
-    }
-
-    @And("^I click logout button on the HomePage$")
-    public void iClickLogoutButtonOnTheHomePage() {
-        homepage.clickSignOutButton();
     }
 
     @And("^I am logged out$")
@@ -111,54 +81,14 @@ public class CommonSteps {
         }
     }
 
-    @And("^I click view my customer account button on the HomePage$")
-    public void iClickViewMyCustomerAccountButtonOnTheHomePage() {
-        myAccountPage = homepage.clickLoggedUserNameButton();
-    }
-
     @And("^I click information button on the MyAccountPage$")
     public void iClickInformationButtonOnTheMyAccountPage() {
-        identityPage = myAccountPage.clickInformationButton();
+        myAccountPage.clickInformationButton();
     }
 
-    @And("^I type name: (.+) on the IdentityPge$")
-    public void iTypeNameOnTheIdentityPge(String newName) {
-        identityPage.typeName(newName);
-    }
-
-    @And("^I type last name: (.+) on the IdentityPge$")
-    public void iTypeLastNameOnTheIdentityPge(String newLastName) {
-        identityPage.typeLastName(newLastName);
-    }
-
-    @And("^I type password: (.+) on the IdentityPge$")
-    public void iTypePasswordOnTheIdentityPge(String password) {
-        loginPage.typePassword(password);
-    }
-
-    @And("^I click save button on the IdentityPge$")
-    public void iClickSaveButtonOnTheIdentityPge() {
-        identityPage.clickSaveButton();
-    }
-
-    @And("^I type email for: (.+) on the LoginPage$")
-    public void iTypeEmailForUSEROnTheLoginPage(String user) {
-        iTypeEmailOnTheLoginPage(UserReader.getUserEmail(user));
-    }
-
-    @And("^I type password for: (.+) on the LoginPage$")
-    public void iTypePasswordForUSEROnTheLoginPage(String user) {
-        iTypePasswordPassOnTheLoginPage(UserReader.getUserPassword(user));
-    }
-
-    @And("^I type password for: (.+) on the IdentityPge$")
-    public void iTypePasswordForUSEROnTheIdentityPge(String user) {
-        iTypePasswordOnTheIdentityPge(UserReader.getUserPassword(user));
-    }
-
-    @Then("^I am logged in as user: (.+)$")
-    public void iAmLoggedInAsUser(String user) {
-        iAmLoggedInAsAutomatedTest(UserReader.getNameAndLastname(user));
+    @Then("^I assert I am logged in as user: (.+)$")
+    public void iAssertIAmLoggedInAsUser(String user) {
+        iAssertIAmLoggedInAsAutomatedTest(UserReader.getNameAndLastname(user));
     }
 
     @And("I provide data table test - row")
