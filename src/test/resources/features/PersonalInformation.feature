@@ -26,5 +26,5 @@ Feature: Personal information features
     And     I click save button on the IdentityPge
     Then    I assert I am logged in as user: CUSTOMER
     And     I click logout button on the HomePage
-    And     I assert that user email: test_777@test.com is valid
+    And     I assert that email for ENUM user: CUSTOMER is valid
     Then    I am logged out

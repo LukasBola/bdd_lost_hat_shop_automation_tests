@@ -101,6 +101,11 @@ public class OtherSteps {
                 testContext.getScenarioContext().getContext(Context.USER_EMAIL_FROM_IDENTITY_PAGE));
     }
 
+    @Then("^I assert that email for ENUM user: (.+) is valid$")
+    public void iAssertThatEmailEnumUserIsValid(String user) {
+        iAssertThatUserEmailIsValid(UserReader.getUserEmail(user));
+    }
+
     @And("I provide data table test - row")
     public void iProvideDataTableTestRow(DataTable dataTable) {
         List<String> list = dataTable.row(3);
