@@ -13,8 +13,8 @@ public class IdentityPageSteps {
     private final IdentityPage identityPage;
     private final LoginPage loginPage;
 
-    public IdentityPageSteps(TestContext context) {
-        this.testContext = context;
+    public IdentityPageSteps(TestContext tContext) {
+        this.testContext = tContext;
         identityPage = testContext.getPageObjectManager().getIdentityPage();
         loginPage = testContext.getPageObjectManager().getLoginPage();
     }

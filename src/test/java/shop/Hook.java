@@ -2,18 +2,13 @@ package shop;
 
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
-import com.codeborne.selenide.logevents.LogEvent;
-import com.codeborne.selenide.logevents.LogEventListener;
 import com.codeborne.selenide.logevents.SelenideLogger;
 import io.cucumber.java.After;
-import io.cucumber.java.AfterStep;
 import io.cucumber.java.Before;
-import io.cucumber.java.BeforeStep;
 import io.qameta.allure.selenide.AllureSelenide;
 import org.apache.log4j.xml.DOMConfigurator;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
-import shop.utils.Log;
 
 import static com.codeborne.selenide.Selenide.closeWebDriver;
 
