@@ -1,15 +1,18 @@
 package shop.steps;
 
 import io.cucumber.java.en.And;
+import shop.context.TestContext;
 import shop.data.UserReader;
 import shop.pages.LoginPage;
 
 public class LoginPageSteps {
 
-    public LoginPage loginPage;
+    private final LoginPage loginPage;
+    private final TestContext testContext;
 
-    public LoginPageSteps(LoginPage loginPage) {
-        this.loginPage = loginPage;
+    public LoginPageSteps(TestContext context) {
+        this.testContext = context;
+        loginPage = testContext.getPageObjectManager().getLoginPage();
     }
 
     @And("^I type email: (.+) on the LoginPage$")

@@ -28,16 +28,16 @@ import static org.hamcrest.Matchers.equalTo;
 public class OtherSteps {
 
     // Pages
-    public TestContext testContext;
-    public HomePage homepage;
-    public LoginPage loginPage;
-    public MyAccountPage myAccountPage;
+    private final TestContext testContext;
+    private final HomePage homepage;
+    private final LoginPage loginPage;
+    private final MyAccountPage myAccountPage;
 
-    public OtherSteps(TestContext testContext, HomePage homepage, LoginPage loginPage, MyAccountPage myAccountPage) {
-        this.testContext = testContext;
-        this.homepage = homepage;
-        this.loginPage = loginPage;
-        this.myAccountPage = myAccountPage;
+    public OtherSteps(TestContext tContext) {
+        this.testContext = tContext;
+        this.homepage = testContext.getPageObjectManager().getHomePage();
+        this.loginPage = testContext.getPageObjectManager().getLoginPage();
+        this.myAccountPage = testContext.getPageObjectManager().getMyAccountPage();
     }
 
     @Then("^I assert I am logged in as: (.+)$")
@@ -98,7 +98,7 @@ public class OtherSteps {
     @Then("^I assert that user email: (.+) is valid$")
     public void iAssertThatUserEmailIsValid(String userEmail) {
         Assert.assertEquals("Wrong email", userEmail,
-                testContext.scenarioContext.getContext(Context.EMAIL_FROM_IDENTITY_PAGE));
+                testContext.getScenarioContext().getContext(Context.USER_EMAIL_FROM_IDENTITY_PAGE));
     }
 
     @And("I provide data table test - row")

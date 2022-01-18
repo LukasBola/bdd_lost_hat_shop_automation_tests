@@ -1,5 +1,5 @@
 package shop.context;
 
 public enum Context {
-    EMAIL_FROM_IDENTITY_PAGE;
+    USER_EMAIL_FROM_IDENTITY_PAGE;
 }

@@ -2,34 +2,37 @@ package shop.steps;
 
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.When;
+import shop.context.TestContext;
 import shop.pages.HomePage;
 
 public class HomePageSteps {
 
-    private HomePage homepage;
+    private final HomePage homePage;
+    private final TestContext testContext;
 
-    public HomePageSteps(HomePage homepage) {
-        this.homepage = homepage;
+    public HomePageSteps(TestContext context) {
+        this.testContext = context;
+        homePage = testContext.getPageObjectManager().getHomePage();
     }
 
     @And("^I am on the HomePage$")
     public void iAmOnTheHomepage() {
-        homepage.openHomepage();
+        homePage.openHomepage();
     }
 
     @When("^I click sign in button on the HomePage$")
     public void iClickLoginButtonOnTheHomePage() {
-        homepage.clickSignInButton();
+        homePage.clickSignInButton();
     }
 
     @And("^I click logout button on the HomePage$")
     public void iClickLogoutButtonOnTheHomePage() {
-        homepage.clickSignOutButton();
+        homePage.clickSignOutButton();
     }
 
     @And("^I click view my customer account button on the HomePage$")
     public void iClickViewMyCustomerAccountButtonOnTheHomePage() {
-        homepage.clickLoggedUserNameButton();
+        homePage.clickLoggedUserNameButton();
     }
 
 }

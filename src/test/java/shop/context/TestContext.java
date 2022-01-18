@@ -1,13 +1,21 @@
 package shop.context;
 
-public class TestContext {
-   public ScenarioContext scenarioContext;
+import shop.managers.PageObjectManager;
 
-    public TestContext(ScenarioContext scenarioContext) {
+public class TestContext {
+   private ScenarioContext scenarioContext;
+   private PageObjectManager pageObjectManager;
+
+    public TestContext() {
         this.scenarioContext = new ScenarioContext();
+        this.pageObjectManager = new PageObjectManager();
     }
 
     public ScenarioContext getScenarioContext(){
         return scenarioContext;
+    }
+
+    public PageObjectManager getPageObjectManager() {
+        return pageObjectManager;
     }
 }

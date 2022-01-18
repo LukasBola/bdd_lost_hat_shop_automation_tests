@@ -6,20 +6,20 @@ import shop.context.TestContext;
 import shop.data.UserReader;
 import shop.pages.IdentityPage;
 import shop.pages.LoginPage;
-import shop.utils.Log;
 
 public class IdentityPageSteps {
 
-    public TestContext testContext;
-    public IdentityPage identityPage;
-    public LoginPage loginPage;
+    private final TestContext testContext;
+    private final IdentityPage identityPage;
+    private final LoginPage loginPage;
 
-    public IdentityPageSteps(TestContext testContext, IdentityPage identityPage, LoginPage loginPage) {
-        this.testContext = testContext;
-        this.identityPage = identityPage;
-        this.loginPage = loginPage;
+    public IdentityPageSteps(TestContext context) {
+        this.testContext = context;
+        identityPage = testContext.getPageObjectManager().getIdentityPage();
+        loginPage = testContext.getPageObjectManager().getLoginPage();
     }
 
+//    Data for ScenarioContext
     String email;
 
     @And("^I type name: (.+) on the IdentityPge$")
@@ -50,6 +50,6 @@ public class IdentityPageSteps {
     @And("^I get email from the IdentityPge$")
     public void iGetEmailFromTheIdentityPge() {
         email = identityPage.getEmail();
-        testContext.scenarioContext.setContext(Context.EMAIL_FROM_IDENTITY_PAGE, email);
+        testContext.getScenarioContext().setContext(Context.USER_EMAIL_FROM_IDENTITY_PAGE, email);
     }
 }
