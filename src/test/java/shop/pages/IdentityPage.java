@@ -3,10 +3,12 @@ package shop.pages;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
+import org.jetbrains.annotations.NotNull;
 import org.openqa.selenium.By;
 import shop.utils.Log;
 
 import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Condition.*;
 
 public class IdentityPage {
     public SelenideElement
@@ -14,7 +16,7 @@ public class IdentityPage {
             socialTitleMrsRadioButton = $(".custom-radio ", 2),
             firsNameInput = $("input[name*='firstname']"),
             lastNameInput = $("input[name*='lastname']"),
-            emailInput = $("input[name*='email']"),
+            emailInput = $("section input[name*='email']"),
             passwordInput = $("input[name*='password']"),
             newPasswordInput = $("input[name*='new_password']"),
             birthdayInput = $("input[name*='birthday']"),
@@ -43,4 +45,11 @@ public class IdentityPage {
         Log.info("Type last name: '" + lastName + "'. Done");
     }
 
+    @Step("Get email")
+    public String getEmail() {
+        Log.info("Get email...");
+        String email = emailInput.shouldBe(visible).getValue();
+        Log.info("Get email: '" + email + "'. Done");
+        return email;
+    }
 }

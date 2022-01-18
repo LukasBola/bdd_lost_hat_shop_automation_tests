@@ -5,6 +5,8 @@ import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import org.junit.Assert;
+import shop.context.Context;
+import shop.context.TestContext;
 import shop.data.UserReader;
 import shop.navigation.ApplicationURLs;
 import shop.pages.HomePage;
@@ -26,11 +28,13 @@ import static org.hamcrest.Matchers.equalTo;
 public class OtherSteps {
 
     // Pages
+    public TestContext testContext;
     public HomePage homepage;
     public LoginPage loginPage;
     public MyAccountPage myAccountPage;
 
-    public OtherSteps(HomePage homepage, LoginPage loginPage, MyAccountPage myAccountPage) {
+    public OtherSteps(TestContext testContext, HomePage homepage, LoginPage loginPage, MyAccountPage myAccountPage) {
+        this.testContext = testContext;
         this.homepage = homepage;
         this.loginPage = loginPage;
         this.myAccountPage = myAccountPage;
@@ -89,6 +93,12 @@ public class OtherSteps {
     @Then("^I assert I am logged in as user: (.+)$")
     public void iAssertIAmLoggedInAsUser(String user) {
         iAssertIAmLoggedInAsAutomatedTest(UserReader.getNameAndLastname(user));
+    }
+
+    @Then("^I assert that user email: (.+) is valid$")
+    public void iAssertThatUserEmailIsValid(String userEmail) {
+        Assert.assertEquals("Wrong email", userEmail,
+                testContext.scenarioContext.getContext(Context.EMAIL_FROM_IDENTITY_PAGE));
     }
 
     @And("I provide data table test - row")

@@ -19,10 +19,12 @@ Feature: Personal information features
     Then    I assert I am logged in as: ChangedName ChangedLastname
     And     I click view my customer account button on the HomePage
     And     I click information button on the MyAccountPage
+    And     I get email from the IdentityPge
     And     I type name: Lukas  on the IdentityPge
     And     I type last name: Bolasz on the IdentityPge
     And     I type password for: CUSTOMER on the IdentityPge
     And     I click save button on the IdentityPge
     Then    I assert I am logged in as user: CUSTOMER
     And     I click logout button on the HomePage
+    And     I assert that user email: test_777@test.com is valid
     Then    I am logged out
