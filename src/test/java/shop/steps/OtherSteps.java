@@ -29,17 +29,15 @@ public class OtherSteps {
 
     // Pages
     private final TestContext testContext;
-    private final HomePage homepage = new HomePage();
-    private final LoginPage loginPage= new LoginPage();
-    private final MyAccountPage myAccountPage = new MyAccountPage();
-//    private final TestContext testContext =  new TestContext();
-
+    private final HomePage homepage;
+    private final LoginPage loginPage;
+    private final MyAccountPage myAccountPage;
 
     public OtherSteps(TestContext tContext) {
         this.testContext = tContext;
-//        this.homepage = testContext.getPageObjectManager().getHomePage();
-//        this.loginPage = testContext.getPageObjectManager().getLoginPage();
-//        this.myAccountPage = testContext.getPageObjectManager().getMyAccountPage();
+        this.homepage = testContext.getPageObjectManager().getHomePage();
+        this.loginPage = testContext.getPageObjectManager().getLoginPage();
+        this.myAccountPage = testContext.getPageObjectManager().getMyAccountPage();
     }
 
     @Then("^I assert I am logged in as: (.+)$")
