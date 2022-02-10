@@ -27,4 +27,5 @@ Feature: Personal information features
     Then    I assert I am logged in as user: CUSTOMER
     And     I click logout button on the HomePage
     And     I assert that email for ENUM user: CUSTOMER is valid
+#    And     I assert that user email: test@wp.pl is valid
     Then    I am logged out

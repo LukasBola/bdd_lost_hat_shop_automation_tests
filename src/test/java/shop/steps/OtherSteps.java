@@ -29,15 +29,17 @@ public class OtherSteps {
 
     // Pages
     private final TestContext testContext;
-    private final HomePage homepage;
-    private final LoginPage loginPage;
-    private final MyAccountPage myAccountPage;
+    private final HomePage homepage = new HomePage();
+    private final LoginPage loginPage= new LoginPage();
+    private final MyAccountPage myAccountPage = new MyAccountPage();
+//    private final TestContext testContext =  new TestContext();
+
 
     public OtherSteps(TestContext tContext) {
         this.testContext = tContext;
-        this.homepage = testContext.getPageObjectManager().getHomePage();
-        this.loginPage = testContext.getPageObjectManager().getLoginPage();
-        this.myAccountPage = testContext.getPageObjectManager().getMyAccountPage();
+//        this.homepage = testContext.getPageObjectManager().getHomePage();
+//        this.loginPage = testContext.getPageObjectManager().getLoginPage();
+//        this.myAccountPage = testContext.getPageObjectManager().getMyAccountPage();
     }
 
     @Then("^I assert I am logged in as: (.+)$")
@@ -145,10 +147,87 @@ public class OtherSteps {
     @And("I provide data table test - asMap")
     public void iProvideDataTableTestAsMap(DataTable dataTable) {
         List<Map<String, String>> maps = dataTable.asMaps(String.class, String.class);
-        System.out.println(maps);
-        for (Map<String, String> row : maps) {
-            System.out.println(row.get("title1") + " " + row.get("title2") + " " + row.get("title3"));
+        maps.forEach(System.out::println);
+//        for (Map<String, String> row : maps) {
+//            System.out.println(row.get("title1") + " " + row.get("title2") + " " + row.get("title3"));
+//        }
+//        System.out.println(maps.get(0).get("title1") + " " + maps.get(0).get("title2") + " " + maps.get(0).get("title3"));
+
+
+        final String controlNumberColumnName = "Nr kontroli";
+        final String controlTermColumnName = "Termin realizacji kontroli";
+        final String controlTypeColumnName = "Typ kontroli";
+        final String controlKindColumnName = "Rodzaj kontroli";
+
+        HashMap<String, String> actualValues = new HashMap<>();
+        actualValues.put(controlNumberColumnName, "23/234");
+        actualValues.put(controlTermColumnName, "2022-01-26 - 2022-02-01");
+        actualValues.put(controlTypeColumnName, "Wizyta monitoringowa");
+        actualValues.put(controlKindColumnName, "Kontrola specjalna (doraźna)");
+
+
+        for (Map<String, String> tableRow : maps) {
+            String columnName = tableRow.get("columnName");
+            String actualValue = null, expectedValue = null;
+            try {
+                switch (columnName) {
+                    case controlNumberColumnName:
+                        actualValue = actualValues.get(controlNumberColumnName);
+                        expectedValue = getExpectedValue(tableRow);
+                        break;
+                    case controlTermColumnName:
+                        actualValue = actualValues.get(controlTermColumnName);
+                        expectedValue = getExpectedValue(tableRow);
+                        break;
+                    case controlTypeColumnName:
+                        actualValue = actualValues.get(controlTypeColumnName);
+                        expectedValue = getExpectedValue(tableRow);
+                        break;
+                    case controlKindColumnName:
+                        actualValue = actualValues.get(controlKindColumnName);
+                        expectedValue = getExpectedValue(tableRow);
+                        break;
+                    default:
+                        System.out.println("Brak danych");
+                        break;
+                }
+            } finally {
+                Assert.assertEquals(actualValue, expectedValue);
+            }
         }
-        System.out.println(maps.get(0).get("title1") + " " + maps.get(0).get("title2") + " " + maps.get(0).get("title3"));
     }
+
+
+    private String getExpectedValue(Map<String, String> tableRow) {
+        return tableRow.get("expectedValue");
+    }
+
+    @And("I provide data table test - asMap2")
+    public void iProvideDataTableTestAsMap2(DataTable dataTable) {
+        List<Map<String, String>> maps = dataTable.asMaps(String.class, String.class);
+        maps.forEach(System.out::println);
+//        for (Map<String, String> row : maps) {
+//            System.out.println(row.get("title1") + " " + row.get("title2") + " " + row.get("title3"));
+//        }
+//        System.out.println(maps.get(0).get("title1") + " " + maps.get(0).get("title2") + " " + maps.get(0).get("title3"));
+
+        final String controlNumberColumnName = "Nr kontroli";
+        final String controlTermColumnName = "Termin realizacji kontroli";
+        final String controlTypeColumnName = "Typ kontroli";
+        final String controlKindColumnName = "Rodzaj kontroli";
+
+        HashMap<String, String> actualValues = new HashMap<>();
+        actualValues.put(controlNumberColumnName, "23/234");
+        actualValues.put(controlTermColumnName, "2022-01-26 - 2022-02-01");
+        actualValues.put(controlTypeColumnName, "Wizyta monitoringowa");
+        actualValues.put(controlKindColumnName, "Kontrola specjalna (doraźna)");
+
+        for (Map<String, String> tableRow : maps) {
+            for (Map.Entry stringStringEntry : tableRow.entrySet()) {
+                System.out.println(stringStringEntry.getKey());
+            }
+
+        }
+    }
+
 }
